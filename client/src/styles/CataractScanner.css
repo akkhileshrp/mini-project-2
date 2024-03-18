@@ -43,7 +43,8 @@
 }
 
 .predicted-img {
-    margin-top: 2%;
+    margin-top: 1.2%;
+    margin-left: 2.5%;
 }
 
 .cataract-desc {
@@ -57,10 +58,14 @@
     .cataract-predict-result {
         width: 55%;
         margin-top: 5%;
-        margin-left: 25%;
+        margin-left: 24%;
     }
 
     .cataract-title {
         margin-top: 16%;
+    }
+
+    .predicted-img {
+        margin-top: 5%;
     }
 }
