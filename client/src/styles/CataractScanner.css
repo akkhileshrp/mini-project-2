@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.cataract-title {
+    text-align: center;
+    margin-top: 10%;
+    font-size: 50px;
+}
+
+.cataract-file {
+    height: 50px;
+    width: fit-content;
+    border: 2px solid #06DBF8E0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2%;
+    margin-top: 3%;
+}
+
+::-webkit-file-upload-button {
+    background-color: #516acc;
+    color: white;
+    font-family: "Philosopher", sans-serif;
+    border: none;
+    cursor: pointer;
+    width: 55%;
+    padding: 10px;
+    margin-left: 2%;
+    font-size: 15px;
+}
+
+.cataract-predict-result {
+    background-color: #516acc;
+    border: none;
+    padding: 10px;
+    width: 16.9%;
+    margin-left: 42.5%;
+    margin-top: 1%;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Philosopher", sans-serif;
+}
+
+.predicted-img {
+    margin-top: 2%;
+}
+
+.cataract-desc {
+    color: #06DBF8E0;
+    font-size: 23px;
+    margin-top: 3%;
+    margin-left: 2%;
+}
+
+@media (max-width: 768px) {
+    .cataract-predict-result {
+        width: 55%;
+        margin-top: 5%;
+        margin-left: 25%;
+    }
+
+    .cataract-title {
+        margin-top: 16%;
+    }
+}

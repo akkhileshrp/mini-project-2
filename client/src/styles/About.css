@@ -1,0 +1,41 @@
+.about-title {
+    text-align: center;
+    margin-top: 5%;
+    font-size: 50px;
+}
+
+.about-desc {
+    margin-left: 2%;
+    line-height: 50px;
+    text-align: justify;
+}
+
+.about-desc-heading {
+    margin-top: 25px;
+    font-size: 44px;
+    text-align: justify;
+    color: #06DBF8E0;
+}
+
+.about-desc-detailed {
+    font-size: 23px;
+    text-align: justify;
+    width: 95%;
+}
+
+@media (max-width: 768px) {
+    .about-desc-detailed {
+        width: 95%;
+        text-indent: 12px;
+    }
+
+    .about-title {
+        margin-top: 15%;
+    }
+}
+
+@media (max-width: 890px) {
+    .about-title {
+        margin-top: 15%;
+    }
+}

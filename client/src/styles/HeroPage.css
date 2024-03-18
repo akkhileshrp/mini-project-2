@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUpDesc {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUpBtn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    text-align: center;
+    margin-top: 11%;
+    line-height: 75px;
+    font-size: 40px;
+    width: 100%;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.hero-title-desc {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 9%;
+    animation: fadeInUpDesc 1.5s ease-out;
+    color: #06DBF8E0;
+}
+
+.hero-btn {
+    background-color: #516acc;
+    margin: 3% 41%;
+    height: 45px;
+    width: 18%;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: "Philosopher", sans-serif;
+    border: none;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    animation: fadeInUpBtn 1.5s ease-out;
+    cursor: pointer;
+}
+
+.hero-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 23px;
+        line-height: 50px;
+        margin-top: 25%;
+    }
+
+    .hero-title-desc {
+        font-size: 23px;
+        line-height: 32px;
+        margin: 20px;
+        margin-top: 45px;
+    }
+
+    .hero-btn {
+        width: 65%;
+        margin-left: 18%;
+    }
+}
