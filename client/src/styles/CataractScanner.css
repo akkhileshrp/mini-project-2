@@ -40,6 +40,7 @@
     font-size: 18px;
     font-weight: 600;
     font-family: "Philosopher", sans-serif;
+    margin-bottom: 5px;
 }
 
 .predicted-img {
@@ -54,7 +55,14 @@
     margin-left: 2%;
 }
 
-@media (max-width: 768px) {
+.prediction-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+@media (max-width: 968px) {
     .cataract-predict-result {
         width: 55%;
         margin-top: 5%;
@@ -63,9 +71,21 @@
 
     .cataract-title {
         margin-top: 16%;
+        font-size: 38px;
     }
 
     .predicted-img {
         margin-top: 5%;
+    }
+
+    .prediction-results {
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .prediction-results-result {
+        margin-left: 25px;
+        font-size: 10px;
+        margin-top: 12px;
     }
 }
