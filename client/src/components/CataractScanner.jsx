@@ -10,12 +10,6 @@ export default function CataractScanner() {
     const [predictionDesc, setPredictionDesc] = useState(null);
     const [predictionResult, setPredictionResult] = useState(null);
 
-    useEffect(() => {
-        axios.get("http://localhost:8000/").then((response) => {
-            console.log(response)
-        })
-    }, [])
-
     const handleChange = (e) => {
         setFile(e.target.files[0]);
         const f1 = e.target.files[0];

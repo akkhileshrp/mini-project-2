@@ -9,4 +9,5 @@ body {
     font-family: "Philosopher", sans-serif;
     color: white;
     background-color: #04152d;
+    overflow-x: hidden;
 }
