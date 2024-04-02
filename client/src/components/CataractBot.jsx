@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/CataractBot.css";
 import Navbar from "./Navbar";
 import ChatbotLogo from "../assets/chatbot.png";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 export default function CataractBot() {
+    const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState("");
+
+    const fetchBotResponse = async (userMessage) => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            });
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+            const data = await response.json();
+            if (data.error) {
+                console.error("Error from the backend:", data.error);
+                return "Sorry, there was an error processing your request.";
+            }
+            return data.result
+        } catch (error) {
+            console.error("Fetching bot response failed:", error);
+            return "Sorry, I couldn't fetch the response.";
+        }
+    };
+
+
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+        if (!message.trim()) return;
+        const userMessage = message;
+        setMessages([...messages, { text: userMessage, sender: 'user' }]);
+        setMessage("");
+        const botResponse = await fetchBotResponse(userMessage);
+        setMessages((prevMessages) => [...prevMessages, { text: botResponse, sender: 'bot' }]);
+    };
+
     return (
         <>
             <Navbar />
@@ -16,9 +54,19 @@ export default function CataractBot() {
                 </div>
             </div>
             <div className="chat-container">
-                <div className="chat-messages"></div>
-                <form className="chat-form">
-                    <input type="text" name="message" placeholder="Type your message..." />
+                <div className="chat-messages">
+                    {messages.map((message, index) => (
+                        <p key={index} className={message.sender}>{message.text}</p>
+                    ))}
+                </div>
+                <form className="chat-form" onSubmit={handleSendMessage}>
+                    <input
+                        type="text"
+                        name="message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Ask your questions..."
+                    />
                     <button type="submit">
                         <SendRoundedIcon />
                     </button>

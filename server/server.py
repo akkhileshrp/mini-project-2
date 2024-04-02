@@ -13,10 +13,13 @@ from langchain.prompts import PromptTemplate
 from langchain.llms import CTransformers
 from langchain.chains import RetrievalQA
 from dotenv import load_dotenv
+from pydantic import BaseModel
 from src.prompt import *
 import os
 
 app = FastAPI()
+class ChatMessage(BaseModel):
+    message: str
 
 origins = ["*"]
 
@@ -158,9 +161,9 @@ def predict(file: UploadFile = File(...)):
 
 
 @app.post("/chatbot")
-def chatbot(msg: str):
+def chatbot(chat_message: ChatMessage):
     try:
-        input = msg
+        input = chat_message.message
         result = qa({"query": input})
         return str(result["result"])
     except Exception as e:

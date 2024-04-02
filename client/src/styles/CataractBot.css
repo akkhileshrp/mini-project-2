@@ -8,7 +8,7 @@
 }
 
 .chat-messages {
-    height: 59vh;
+    height: 58vh;
     overflow-y: auto;
     width: 100%;
 }
