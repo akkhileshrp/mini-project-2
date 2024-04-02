@@ -8,18 +8,21 @@ export default function CataractBot() {
     return (
         <>
             <Navbar />
-            <div className="chatbot-container">
-                <img src={ChatbotLogo} alt="chatbot-logo" className="chatbot-logo" />
-                <div className="chatbot-logo-section">
-                    <h4>Cataract Chatbot</h4>
-                    <p>Ask any questions you want to know about Cataract</p>
+            <div className="chat-logo">
+                <img src={ChatbotLogo} alt="logo" className="chat" />
+                <div className="chat-desc">
+                    <h4>Cataract Bot</h4>
+                    <p>Shoot your questions!!!</p>
                 </div>
-                <div className="chatbot-prompt-section">
-                    <input type="text" placeholder="Ask Something..." className="chatbot-prompt" />
-                    <button>
+            </div>
+            <div className="chat-container">
+                <div className="chat-messages"></div>
+                <form className="chat-form">
+                    <input type="text" name="message" placeholder="Type your message..." />
+                    <button type="submit">
                         <SendRoundedIcon />
                     </button>
-                </div>
+                </form>
             </div>
         </>
     );
