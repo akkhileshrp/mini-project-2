@@ -3,6 +3,7 @@ import "../styles/CataractBot.css";
 import Navbar from "./Navbar";
 import ChatbotLogo from "../assets/chatbot.png";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import axios from "axios";
 
 export default function CataractBot() {
     const [messages, setMessages] = useState([]);
@@ -10,22 +11,11 @@ export default function CataractBot() {
 
     const fetchBotResponse = async (userMessage) => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/chatbot', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userMessage }),
+            const response = await axios.post('http://127.0.0.1:8000/chatbot', {
+                message: userMessage
             });
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-            const data = await response.json();
-            if (data.error) {
-                console.error("Error from the backend:", data.error);
-                return "Sorry, there was an error processing your request.";
-            }
-            return data.result
+            console.log("Bot response:", response.data);
+            return response.data || "No response from the bot.";
         } catch (error) {
             console.error("Fetching bot response failed:", error);
             return "Sorry, I couldn't fetch the response.";
@@ -56,7 +46,9 @@ export default function CataractBot() {
             <div className="chat-container">
                 <div className="chat-messages">
                     {messages.map((message, index) => (
-                        <p key={index} className={message.sender}>{message.text}</p>
+                        <div key={index}>
+                            <p className={message.sender}>{message.text}</p>
+                        </div>
                     ))}
                 </div>
                 <form className="chat-form" onSubmit={handleSendMessage}>

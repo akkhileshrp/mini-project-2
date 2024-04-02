@@ -20,14 +20,15 @@
 }
 
 .user {
-    background-color: #007bff;
+    background-color: #042446;
     color: white;
-    align-self: flex-end;
+    padding: 20px;
 }
 
 .bot {
-    background-color: #043d79;
+    background-color: #013165;
     color: #fff;
+    padding: 20px;
 }
 
 .chat-form {
