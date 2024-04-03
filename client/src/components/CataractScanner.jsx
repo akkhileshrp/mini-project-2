@@ -21,7 +21,7 @@ export default function CataractScanner() {
             fileReader.readAsDataURL(f1);
         }
     };
-    
+
     const uploadImage = async () => {
         const formData = new FormData();
         formData.append("file", file);
@@ -33,6 +33,7 @@ export default function CataractScanner() {
             setPredictionResult(response.data["content"]);
         }
     };
+
     return (
         <>
             <Navbar />
@@ -49,14 +50,16 @@ export default function CataractScanner() {
                 </center>
                 {prediciton && predictionDesc && predictionResult && (
                     <>
-                        <div className="prediction-results">
-                            <h1>Prediction: {prediciton}</h1>
-                        </div>
-                        <div className="prediction-results">
-                            <h1>Prediction-Result: {predictionDesc}</h1>
-                        </div>
-                        <div className="prediction-results-result">
-                            <h1>Prediction Action: {predictionResult}</h1>
+                        <div className="cataract-container">
+                            <div className="prediction-results">
+                                <h1>Prediction: {prediciton}</h1>
+                            </div>
+                            <div className="prediction-results">
+                                <h1>Prediction-Result: {predictionDesc}</h1>
+                            </div>
+                            <div className="prediction-results-result">
+                                <h1>Prediction Action: {predictionResult}</h1>
+                            </div>
                         </div>
                     </>
                 )}

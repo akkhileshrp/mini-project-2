@@ -64,16 +64,22 @@
     cursor: pointer;
 }
 
+.chat-loader {
+    position: relative;
+    bottom: 185px;
+    left: 50%
+}
+
 .chat-form button:hover {
     background-color: #0056b3;
     transition: 0.5s ease-in-out;
 }
 
 .chat-logo {
-   position: relative;
-   left: 5%;
-   top: 60px;
-   z-index: -3000;
+    position: relative;
+    left: 5%;
+    top: 60px;
+    z-index: -3000;
 }
 
 .chat {
@@ -87,11 +93,20 @@
         margin-top: 10%;
         width: 80%;
     }
+
+    .chat-loader {
+        left: 43%;
+    }
 }
 
 @media (max-width: 886px) {
     .chat-container {
         margin-top: 15%;
+    }
+
+    .chat-loader {
+        left: 48%;
+        bottom: 250px;
     }
 }
 
@@ -103,5 +118,10 @@
 
     .chat-messages {
         height: 63vh;
+    }
+
+    .chat-loader {
+        left: 43%;
+        bottom: 250px;
     }
 }

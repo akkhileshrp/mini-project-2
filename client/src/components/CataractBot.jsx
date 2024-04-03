@@ -3,14 +3,17 @@ import "../styles/CataractBot.css";
 import Navbar from "./Navbar";
 import ChatbotLogo from "../assets/chatbot.png";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import ScaleLoader from "react-spinners/ScaleLoader"
 import axios from "axios";
 
 export default function CataractBot() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const fetchBotResponse = async (userMessage) => {
         try {
+            setLoading(true);
             const response = await axios.post('http://127.0.0.1:8000/chatbot', {
                 message: userMessage
             });
@@ -19,9 +22,10 @@ export default function CataractBot() {
         } catch (error) {
             console.error("Fetching bot response failed:", error);
             return "Sorry, I couldn't fetch the response.";
+        } finally {
+            setLoading(false);
         }
     };
-
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -51,6 +55,16 @@ export default function CataractBot() {
                         </div>
                     ))}
                 </div>
+                {loading &&
+                    <div className="chat-loader">
+                        <ScaleLoader
+                            color="#fff"
+                            height={40}
+                            radius={2}
+                            width={5}
+                        />
+                    </div>
+                }
                 <form className="chat-form" onSubmit={handleSendMessage}>
                     <input
                         type="text"
