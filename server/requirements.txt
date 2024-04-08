@@ -6,4 +6,5 @@ flask
 pypdf
 python-dotenv
 SQLAlchemy
+psycopg2-binary
 -e .

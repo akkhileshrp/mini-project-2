@@ -3,13 +3,14 @@ import "../styles/CataractBot.css";
 import Navbar from "./Navbar";
 import ChatbotLogo from "../assets/chatbot.png";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import ScaleLoader from "react-spinners/ScaleLoader"
+import ScaleLoader from "react-spinners/ScaleLoader";
 import axios from "axios";
 
 export default function CataractBot() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showSampleQuestion, setShowSampleQuestion] = useState(true);
 
     const fetchBotResponse = async (userMessage) => {
         try {
@@ -35,6 +36,13 @@ export default function CataractBot() {
         setMessage("");
         const botResponse = await fetchBotResponse(userMessage);
         setMessages((prevMessages) => [...prevMessages, { text: botResponse, sender: 'bot' }]);
+        setShowSampleQuestion(false);
+    };
+
+    const handleSampleQuestionClick = async (sampleQuestion) => {
+        const botResponse = await fetchBotResponse(sampleQuestion);
+        setMessages([...messages, { text: sampleQuestion, sender: 'user' }, { text: botResponse, sender: 'bot' }]);
+        setShowSampleQuestion(false);
     };
 
     return (
@@ -65,12 +73,18 @@ export default function CataractBot() {
                         />
                     </div>
                 }
+                {showSampleQuestion && (
+                    <div className="sample-question-container">
+                        <p onClick={() => handleSampleQuestionClick("Sample Question")}>Sample Question</p>
+                    </div>
+                )}
                 <form className="chat-form" onSubmit={handleSendMessage}>
                     <input
                         type="text"
                         name="message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        onSubmit={() => setShowSampleQuestion(false)}
                         placeholder="Ask your questions..."
                     />
                     <button type="submit">
