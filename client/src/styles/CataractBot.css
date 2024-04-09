@@ -14,6 +14,32 @@
     width: 100%;
 }
 
+.sample-questions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sample-question-container {
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px #007bff;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 85%;
+    position: relative;
+    left: 7%;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.left-questions,
+.right-questions {
+    flex: 1;
+}
+
+.middle-questions {
+    flex: 1;
+}
+
 .message {
     padding: 8px 12px;
     margin-bottom: 5px;

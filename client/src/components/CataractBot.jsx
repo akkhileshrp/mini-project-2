@@ -40,9 +40,16 @@ export default function CataractBot() {
     };
 
     const handleSampleQuestionClick = async (sampleQuestion) => {
-        const botResponse = await fetchBotResponse(sampleQuestion);
-        setMessages([...messages, { text: sampleQuestion, sender: 'user' }, { text: botResponse, sender: 'bot' }]);
+        const userMessageIndex = messages.length;
+        setMessages([...messages, { text: sampleQuestion, sender: 'user' }]);
         setShowSampleQuestion(false);
+        const botResponse = await fetchBotResponse(sampleQuestion);
+        setMessages(messages => {
+            const updatedMessages = [...messages];
+            updatedMessages[userMessageIndex] = { text: sampleQuestion, sender: 'user' };
+            updatedMessages.push({ text: botResponse, sender: 'bot' });
+            return updatedMessages;
+        });
     };
 
     return (
@@ -74,17 +81,40 @@ export default function CataractBot() {
                     </div>
                 }
                 {showSampleQuestion && (
-                    <div className="sample-question-container">
-                        <p onClick={() => handleSampleQuestionClick("Sample Question")}>Sample Question</p>
+                    <div className="sample-questions">
+                        <div className="left-questions">
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("What are the common symptoms of cataracts?")}>What are the common symptoms of cataracts?</p>
+                            </div>
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("Are there any genetic factors that contribute to cataracts?")}>Are there any genetic factors that contribute to cataracts?</p>
+                            </div>
+                        </div>
+                        <div className="middle-questions">
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("Are there any vitamins or supplements recommended for preventing cataracts?")}>Are there any vitamins or supplements recommended for preventing cataracts?</p>
+                            </div>
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("How are cataracts diagnosed during an eye exam?")}>How are cataracts diagnosed during an eye exam?</p>
+                            </div>
+                        </div>
+                        <div className="right-questions">
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("How soon after cataract surgery can I resume normal activities?")}>How soon after cataract surgery can I resume normal activities?</p>
+                            </div>
+                            <div className="sample-question-container">
+                                <p onClick={() => handleSampleQuestionClick("How do cataracts affect vision clarity?")}>How do cataracts affect vision clarity?</p>
+                            </div>
+                        </div>
                     </div>
                 )}
+
                 <form className="chat-form" onSubmit={handleSendMessage}>
                     <input
                         type="text"
                         name="message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        onSubmit={() => setShowSampleQuestion(false)}
                         placeholder="Ask your questions..."
                     />
                     <button type="submit">
